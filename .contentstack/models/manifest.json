@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "manifest": "/Users/shafeeq.pp/WORKSPACE/stacksmith-projects/.contentstack/models/manifest.json",
+    "schema": "/Users/shafeeq.pp/WORKSPACE/stacksmith-projects/.contentstack/models/schema.json"
+  },
+  "compilerVersion": "unknown",
+  "packageVersions": {
+    "cli": "unknown",
+    "models": "unknown"
+  },
+  "projectName": "stacksmith-projects",
+  "schemaHash": "1d608b2416bc4fc095f581df902ab47a17099ef6d3ab16492fc30fec411522b8",
+  "sourceFiles": [
+    "/Users/shafeeq.pp/WORKSPACE/stacksmith-projects/contentstack.stacksmith.config.ts",
+    "/Users/shafeeq.pp/WORKSPACE/stacksmith-projects/src/models/index.ts"
+  ]
+}
