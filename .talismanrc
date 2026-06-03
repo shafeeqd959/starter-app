@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: .contentstack/models/manifest.json
+  checksum: 6a739ec1b75a1852b7a1b2ca1277a0b1cd34cee6c38eddfb4a93a3f2f3b6ec53
+version: "1.0"
