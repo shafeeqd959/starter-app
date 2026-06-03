@@ -1,0 +1,440 @@
+{
+  "dependencyNotes": [
+    "post references author",
+    "post references category"
+  ],
+  "dependencyOrder": [
+    "content_type:author",
+    "content_type:category",
+    "content_type:post"
+  ],
+  "operations": [
+    {
+      "dependencies": [],
+      "details": [
+        {
+          "after": {
+            "dependencies": [],
+            "description": "Blog author profile.",
+            "fields": [
+              {
+                "dependencies": [],
+                "displayName": "Title",
+                "id": "content_type:author.field:title",
+                "kind": "text",
+                "metadata": {
+                  "_default": true
+                },
+                "multiple": false,
+                "order": 0,
+                "required": true,
+                "uid": "title",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Name",
+                "id": "content_type:author.field:name",
+                "kind": "text",
+                "metadata": {},
+                "multiple": false,
+                "order": 1,
+                "required": true,
+                "uid": "name",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Slug",
+                "id": "content_type:author.field:slug",
+                "kind": "text",
+                "metadata": {},
+                "multiple": false,
+                "order": 2,
+                "required": true,
+                "uid": "slug",
+                "unique": true
+              },
+              {
+                "dependencies": [],
+                "displayName": "Avatar",
+                "id": "content_type:author.field:avatar",
+                "kind": "file",
+                "metadata": {},
+                "multiple": false,
+                "order": 3,
+                "required": false,
+                "uid": "avatar",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Bio",
+                "id": "content_type:author.field:bio",
+                "kind": "markdown",
+                "metadata": {},
+                "multiple": false,
+                "order": 4,
+                "required": false,
+                "uid": "bio",
+                "unique": false
+              }
+            ],
+            "id": "content_type:author",
+            "kind": "content_type",
+            "metadata": {
+              "origin": "dsl"
+            },
+            "title": "Author",
+            "uid": "author"
+          },
+          "message": "Entity will be created",
+          "path": "content_type:author"
+        }
+      ],
+      "entity": {
+        "id": "content_type:author",
+        "kind": "content_type",
+        "uid": "author"
+      },
+      "id": "create:content_type:author",
+      "kind": "create_entity",
+      "risks": [
+        {
+          "code": "SAFE_ENTITY_CHANGE",
+          "entityId": "content_type:author",
+          "level": "low",
+          "message": "Create content type author is safe to apply in phase 1."
+        }
+      ],
+      "status": "pending",
+      "summary": "Create content type author"
+    },
+    {
+      "dependencies": [],
+      "details": [
+        {
+          "after": {
+            "dependencies": [],
+            "description": "Blog post category.",
+            "fields": [
+              {
+                "dependencies": [],
+                "displayName": "Title",
+                "id": "content_type:category.field:title",
+                "kind": "text",
+                "metadata": {
+                  "_default": true
+                },
+                "multiple": false,
+                "order": 0,
+                "required": true,
+                "uid": "title",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Name",
+                "id": "content_type:category.field:name",
+                "kind": "text",
+                "metadata": {},
+                "multiple": false,
+                "order": 1,
+                "required": true,
+                "uid": "name",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Slug",
+                "id": "content_type:category.field:slug",
+                "kind": "text",
+                "metadata": {},
+                "multiple": false,
+                "order": 2,
+                "required": true,
+                "uid": "slug",
+                "unique": true
+              },
+              {
+                "dependencies": [],
+                "displayName": "Description",
+                "id": "content_type:category.field:description",
+                "kind": "text",
+                "metadata": {},
+                "multiple": false,
+                "order": 3,
+                "required": false,
+                "uid": "description",
+                "unique": false
+              }
+            ],
+            "id": "content_type:category",
+            "kind": "content_type",
+            "metadata": {
+              "origin": "dsl"
+            },
+            "title": "Category",
+            "uid": "category"
+          },
+          "message": "Entity will be created",
+          "path": "content_type:category"
+        }
+      ],
+      "entity": {
+        "id": "content_type:category",
+        "kind": "content_type",
+        "uid": "category"
+      },
+      "id": "create:content_type:category",
+      "kind": "create_entity",
+      "risks": [
+        {
+          "code": "SAFE_ENTITY_CHANGE",
+          "entityId": "content_type:category",
+          "level": "low",
+          "message": "Create content type category is safe to apply in phase 1."
+        }
+      ],
+      "status": "pending",
+      "summary": "Create content type category"
+    },
+    {
+      "dependencies": [
+        "content_type:author",
+        "content_type:category"
+      ],
+      "details": [
+        {
+          "after": {
+            "dependencies": [
+              {
+                "description": "post references author",
+                "kind": "content_type",
+                "reason": "reference",
+                "sourceEntityId": "content_type:post",
+                "sourceFieldId": "content_type:post.field:author",
+                "targetEntityId": "content_type:author",
+                "uid": "author"
+              },
+              {
+                "description": "post references category",
+                "kind": "content_type",
+                "reason": "reference",
+                "sourceEntityId": "content_type:post",
+                "sourceFieldId": "content_type:post.field:categories",
+                "targetEntityId": "content_type:category",
+                "uid": "category"
+              }
+            ],
+            "description": "Blog post with rich content, author reference, and categories.",
+            "fields": [
+              {
+                "dependencies": [],
+                "displayName": "Title",
+                "id": "content_type:post.field:title",
+                "kind": "text",
+                "metadata": {},
+                "multiple": false,
+                "order": 0,
+                "required": true,
+                "uid": "title",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Slug",
+                "id": "content_type:post.field:slug",
+                "kind": "text",
+                "metadata": {},
+                "multiple": false,
+                "order": 1,
+                "required": true,
+                "uid": "slug",
+                "unique": true
+              },
+              {
+                "dependencies": [],
+                "displayName": "Excerpt",
+                "id": "content_type:post.field:excerpt",
+                "kind": "text",
+                "metadata": {},
+                "multiline": true,
+                "multiple": false,
+                "order": 2,
+                "required": false,
+                "uid": "excerpt",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Body",
+                "id": "content_type:post.field:body",
+                "kind": "json_rte",
+                "metadata": {},
+                "multiple": false,
+                "order": 3,
+                "required": true,
+                "richTextType": "advanced",
+                "uid": "body",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Featured Image",
+                "id": "content_type:post.field:featured_image",
+                "kind": "file",
+                "metadata": {},
+                "multiple": false,
+                "order": 4,
+                "required": false,
+                "uid": "featured_image",
+                "unique": false
+              },
+              {
+                "dependencies": [
+                  {
+                    "description": "post references author",
+                    "kind": "content_type",
+                    "reason": "reference",
+                    "sourceEntityId": "content_type:post",
+                    "sourceFieldId": "content_type:post.field:author",
+                    "targetEntityId": "content_type:author",
+                    "uid": "author"
+                  }
+                ],
+                "displayName": "Author",
+                "id": "content_type:post.field:author",
+                "kind": "reference",
+                "metadata": {},
+                "multiple": false,
+                "order": 5,
+                "referenceTo": [
+                  "author"
+                ],
+                "required": true,
+                "uid": "author",
+                "unique": false
+              },
+              {
+                "dependencies": [
+                  {
+                    "description": "post references category",
+                    "kind": "content_type",
+                    "reason": "reference",
+                    "sourceEntityId": "content_type:post",
+                    "sourceFieldId": "content_type:post.field:categories",
+                    "targetEntityId": "content_type:category",
+                    "uid": "category"
+                  }
+                ],
+                "displayName": "Categories",
+                "id": "content_type:post.field:categories",
+                "kind": "reference",
+                "metadata": {},
+                "multiple": true,
+                "order": 6,
+                "referenceTo": [
+                  "category"
+                ],
+                "required": false,
+                "uid": "categories",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Published At",
+                "id": "content_type:post.field:published_at",
+                "kind": "date",
+                "metadata": {},
+                "multiple": false,
+                "order": 7,
+                "required": false,
+                "uid": "published_at",
+                "unique": false
+              },
+              {
+                "dependencies": [],
+                "displayName": "Status",
+                "displayType": "dropdown",
+                "enumChoices": [
+                  "draft",
+                  "published",
+                  "archived"
+                ],
+                "id": "content_type:post.field:status",
+                "kind": "enum",
+                "metadata": {},
+                "multiple": false,
+                "order": 8,
+                "required": false,
+                "uid": "status",
+                "unique": false
+              }
+            ],
+            "id": "content_type:post",
+            "kind": "content_type",
+            "metadata": {
+              "origin": "dsl"
+            },
+            "title": "Post",
+            "uid": "post"
+          },
+          "message": "Entity will be created",
+          "path": "content_type:post"
+        }
+      ],
+      "entity": {
+        "id": "content_type:post",
+        "kind": "content_type",
+        "uid": "post"
+      },
+      "id": "create:content_type:post",
+      "kind": "create_entity",
+      "risks": [
+        {
+          "code": "SAFE_ENTITY_CHANGE",
+          "entityId": "content_type:post",
+          "level": "low",
+          "message": "Create content type post is safe to apply in phase 1."
+        }
+      ],
+      "status": "pending",
+      "summary": "Create content type post"
+    }
+  ],
+  "schemaVersion": 1,
+  "summary": {
+    "blocked": 0,
+    "creates": 3,
+    "deletes": 0,
+    "highRisk": 0,
+    "lowRisk": 3,
+    "mediumRisk": 0,
+    "total": 3,
+    "updates": 0
+  },
+  "validationFindings": [
+    {
+      "code": "SAFE_ENTITY_CHANGE",
+      "entityId": "content_type:author",
+      "level": "low",
+      "message": "Create content type author is safe to apply in phase 1.",
+      "operationId": "create:content_type:author"
+    },
+    {
+      "code": "SAFE_ENTITY_CHANGE",
+      "entityId": "content_type:category",
+      "level": "low",
+      "message": "Create content type category is safe to apply in phase 1.",
+      "operationId": "create:content_type:category"
+    },
+    {
+      "code": "SAFE_ENTITY_CHANGE",
+      "entityId": "content_type:post",
+      "level": "low",
+      "message": "Create content type post is safe to apply in phase 1.",
+      "operationId": "create:content_type:post"
+    }
+  ]
+}

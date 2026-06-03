@@ -1,5 +1,5 @@
 {
-  "name": "stacksmith-projects",
+  "name": "simple-blog",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -9,12 +9,12 @@
     "lint": "eslint . --ext .ts",
     "test": "vitest run --passWithNoTests",
     "clean": "rimraf .contentstack",
-    "build-models": "csdx stacksmith:build --cwd .",
-    "plan-models": "csdx stacksmith:plan --cwd .",
-    "diff-models": "csdx stacksmith:diff --cwd .",
-    "docs-models": "csdx stacksmith:docs --cwd ."
+    "build-models": "pnpm --filter @timbenniks/contentstack-stacksmith-cli exec csdx stacksmith:build --cwd .",
+    "plan-models": "pnpm --filter @timbenniks/contentstack-stacksmith-cli exec csdx stacksmith:plan --cwd .",
+    "diff-models": "pnpm --filter @timbenniks/contentstack-stacksmith-cli exec csdx stacksmith:diff --cwd .",
+    "docs-models": "pnpm --filter @timbenniks/contentstack-stacksmith-cli exec csdx stacksmith:docs --cwd ."
   },
   "dependencies": {
-    "@timbenniks/contentstack-stacksmith": "0.1.0"
+    "@timbenniks/contentstack-stacksmith": "workspace:*"
   }
 }

@@ -2,49 +2,66 @@
   "entities": [
     {
       "dependencies": [],
-      "description": "It contains blog authors",
+      "description": "Blog author profile.",
       "fields": [
         {
           "dependencies": [],
-          "displayName": "Full Name",
+          "displayName": "Title",
           "id": "content_type:author.field:title",
           "kind": "text",
           "metadata": {
-            "_default": true,
-            "version": 3
+            "_default": true
           },
           "multiple": false,
           "order": 0,
           "required": true,
           "uid": "title",
+          "unique": false
+        },
+        {
+          "dependencies": [],
+          "displayName": "Name",
+          "id": "content_type:author.field:name",
+          "kind": "text",
+          "metadata": {},
+          "multiple": false,
+          "order": 1,
+          "required": true,
+          "uid": "name",
+          "unique": false
+        },
+        {
+          "dependencies": [],
+          "displayName": "Slug",
+          "id": "content_type:author.field:slug",
+          "kind": "text",
+          "metadata": {},
+          "multiple": false,
+          "order": 2,
+          "required": true,
+          "uid": "slug",
           "unique": true
         },
         {
           "dependencies": [],
-          "displayName": "Picture",
-          "id": "content_type:author.field:picture",
+          "displayName": "Avatar",
+          "id": "content_type:author.field:avatar",
           "kind": "file",
-          "metadata": {
-            "image": true
-          },
+          "metadata": {},
           "multiple": false,
-          "order": 1,
-          "required": true,
-          "uid": "picture",
+          "order": 3,
+          "required": false,
+          "uid": "avatar",
           "unique": false
         },
         {
           "dependencies": [],
           "displayName": "Bio",
           "id": "content_type:author.field:bio",
-          "kind": "text",
-          "metadata": {
-            "default_value": "",
-            "version": 3
-          },
-          "multiline": true,
+          "kind": "markdown",
+          "metadata": {},
           "multiple": false,
-          "order": 2,
+          "order": 4,
           "required": false,
           "uid": "bio",
           "unique": false
@@ -55,107 +72,175 @@
       "metadata": {
         "origin": "dsl"
       },
-      "options": {
-        "is_page": false,
-        "singleton": false,
-        "sub_title": [],
-        "title": "title"
-      },
       "title": "Author",
       "uid": "author"
     },
     {
-      "dependencies": [
-        {
-          "description": "blog_post references author",
-          "kind": "content_type",
-          "reason": "reference",
-          "sourceEntityId": "content_type:blog_post",
-          "sourceFieldId": "content_type:blog_post.field:author",
-          "targetEntityId": "content_type:author",
-          "uid": "author"
-        },
-        {
-          "description": "blog_post references blog_post",
-          "kind": "content_type",
-          "reason": "reference",
-          "sourceEntityId": "content_type:blog_post",
-          "sourceFieldId": "content_type:blog_post.field:related_post",
-          "targetEntityId": "content_type:blog_post",
-          "uid": "blog_post"
-        },
-        {
-          "description": "blog_post depends on global field seo",
-          "kind": "global_field",
-          "reason": "global_field",
-          "sourceEntityId": "content_type:blog_post",
-          "sourceFieldId": "content_type:blog_post.field:seo",
-          "targetEntityId": "global_field:seo",
-          "uid": "seo"
-        },
-        {
-          "description": "blog_post depends on global field test_glooobal",
-          "kind": "global_field",
-          "reason": "global_field",
-          "sourceEntityId": "content_type:blog_post",
-          "sourceFieldId": "content_type:blog_post.field:global_field",
-          "targetEntityId": "global_field:test_glooobal",
-          "uid": "test_glooobal"
-        }
-      ],
-      "description": "It contains blog posts",
+      "dependencies": [],
+      "description": "Blog post category.",
       "fields": [
         {
           "dependencies": [],
           "displayName": "Title",
-          "id": "content_type:blog_post.field:title",
+          "id": "content_type:category.field:title",
           "kind": "text",
           "metadata": {
-            "_default": true,
-            "version": 3
+            "_default": true
           },
           "multiple": false,
           "order": 0,
           "required": true,
           "uid": "title",
+          "unique": false
+        },
+        {
+          "dependencies": [],
+          "displayName": "Name",
+          "id": "content_type:category.field:name",
+          "kind": "text",
+          "metadata": {},
+          "multiple": false,
+          "order": 1,
+          "required": true,
+          "uid": "name",
+          "unique": false
+        },
+        {
+          "dependencies": [],
+          "displayName": "Slug",
+          "id": "content_type:category.field:slug",
+          "kind": "text",
+          "metadata": {},
+          "multiple": false,
+          "order": 2,
+          "required": true,
+          "uid": "slug",
           "unique": true
         },
         {
           "dependencies": [],
-          "displayName": "URL",
-          "id": "content_type:blog_post.field:url",
+          "displayName": "Description",
+          "id": "content_type:category.field:description",
           "kind": "text",
-          "metadata": {
-            "_default": true,
-            "version": 3
-          },
+          "metadata": {},
+          "multiple": false,
+          "order": 3,
+          "required": false,
+          "uid": "description",
+          "unique": false
+        }
+      ],
+      "id": "content_type:category",
+      "kind": "content_type",
+      "metadata": {
+        "origin": "dsl"
+      },
+      "title": "Category",
+      "uid": "category"
+    },
+    {
+      "dependencies": [
+        {
+          "description": "post references author",
+          "kind": "content_type",
+          "reason": "reference",
+          "sourceEntityId": "content_type:post",
+          "sourceFieldId": "content_type:post.field:author",
+          "targetEntityId": "content_type:author",
+          "uid": "author"
+        },
+        {
+          "description": "post references category",
+          "kind": "content_type",
+          "reason": "reference",
+          "sourceEntityId": "content_type:post",
+          "sourceFieldId": "content_type:post.field:categories",
+          "targetEntityId": "content_type:category",
+          "uid": "category"
+        }
+      ],
+      "description": "Blog post with rich content, author reference, and categories.",
+      "fields": [
+        {
+          "dependencies": [],
+          "displayName": "Title",
+          "id": "content_type:post.field:title",
+          "kind": "text",
+          "metadata": {},
+          "multiple": false,
+          "order": 0,
+          "required": true,
+          "uid": "title",
+          "unique": false
+        },
+        {
+          "dependencies": [],
+          "displayName": "Slug",
+          "id": "content_type:post.field:slug",
+          "kind": "text",
+          "metadata": {},
           "multiple": false,
           "order": 1,
+          "required": true,
+          "uid": "slug",
+          "unique": true
+        },
+        {
+          "dependencies": [],
+          "displayName": "Excerpt",
+          "id": "content_type:post.field:excerpt",
+          "kind": "text",
+          "metadata": {},
+          "multiline": true,
+          "multiple": false,
+          "order": 2,
           "required": false,
-          "uid": "url",
+          "uid": "excerpt",
+          "unique": false
+        },
+        {
+          "dependencies": [],
+          "displayName": "Body",
+          "id": "content_type:post.field:body",
+          "kind": "json_rte",
+          "metadata": {},
+          "multiple": false,
+          "order": 3,
+          "required": true,
+          "richTextType": "advanced",
+          "uid": "body",
+          "unique": false
+        },
+        {
+          "dependencies": [],
+          "displayName": "Featured Image",
+          "id": "content_type:post.field:featured_image",
+          "kind": "file",
+          "metadata": {},
+          "multiple": false,
+          "order": 4,
+          "required": false,
+          "uid": "featured_image",
           "unique": false
         },
         {
           "dependencies": [
             {
-              "description": "blog_post references author",
+              "description": "post references author",
               "kind": "content_type",
               "reason": "reference",
-              "sourceEntityId": "content_type:blog_post",
-              "sourceFieldId": "content_type:blog_post.field:author",
+              "sourceEntityId": "content_type:post",
+              "sourceFieldId": "content_type:post.field:author",
               "targetEntityId": "content_type:author",
               "uid": "author"
             }
           ],
           "displayName": "Author",
-          "id": "content_type:blog_post.field:author",
+          "id": "content_type:post.field:author",
           "kind": "reference",
-          "metadata": {
-            "ref_multiple": false
-          },
+          "metadata": {},
           "multiple": false,
-          "order": 2,
-          "refMultipleContentTypes": true,
+          "order": 5,
           "referenceTo": [
             "author"
           ],
@@ -164,1662 +249,68 @@
           "unique": false
         },
         {
-          "dependencies": [],
-          "description": "Optional field that overrides the publishing date.",
-          "displayName": "Date",
-          "endDate": null,
-          "id": "content_type:blog_post.field:date",
-          "kind": "date",
-          "metadata": {
-            "date_range": false,
-            "default_value": {
-              "custom": false,
-              "date": "",
-              "time": ""
-            }
-          },
-          "multiple": false,
-          "order": 3,
-          "required": false,
-          "startDate": null,
-          "uid": "date",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Featured Image",
-          "id": "content_type:blog_post.field:featured_image",
-          "kind": "file",
-          "metadata": {
-            "image": true
-          },
-          "multiple": false,
-          "order": 4,
-          "required": true,
-          "uid": "featured_image",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Body",
-          "id": "content_type:blog_post.field:body",
-          "kind": "json_rte",
-          "metadata": {
-            "default_value": "",
-            "embed_entry": false,
-            "options": []
-          },
-          "multiple": false,
-          "order": 5,
-          "referenceTo": [
-            "sys_assets"
-          ],
-          "required": false,
-          "richTextType": "advanced",
-          "uid": "body",
-          "unique": false
-        },
-        {
           "dependencies": [
             {
-              "description": "blog_post references blog_post",
+              "description": "post references category",
               "kind": "content_type",
               "reason": "reference",
-              "sourceEntityId": "content_type:blog_post",
-              "sourceFieldId": "content_type:blog_post.field:related_post",
-              "targetEntityId": "content_type:blog_post",
-              "uid": "blog_post"
+              "sourceEntityId": "content_type:post",
+              "sourceFieldId": "content_type:post.field:categories",
+              "targetEntityId": "content_type:category",
+              "uid": "category"
             }
           ],
-          "displayName": "Related Post",
-          "id": "content_type:blog_post.field:related_post",
+          "displayName": "Categories",
+          "id": "content_type:post.field:categories",
           "kind": "reference",
-          "metadata": {
-            "ref_multiple": true
-          },
-          "multiple": false,
+          "metadata": {},
+          "multiple": true,
           "order": 6,
-          "refMultipleContentTypes": true,
           "referenceTo": [
-            "blog_post"
+            "category"
           ],
           "required": false,
-          "uid": "related_post",
+          "uid": "categories",
           "unique": false
         },
         {
           "dependencies": [],
-          "displayName": "Is Archived?",
-          "id": "content_type:blog_post.field:is_archived",
-          "kind": "boolean",
-          "metadata": {
-            "default_value": false
-          },
+          "displayName": "Published At",
+          "id": "content_type:post.field:published_at",
+          "kind": "date",
+          "metadata": {},
           "multiple": false,
           "order": 7,
           "required": false,
-          "uid": "is_archived",
+          "uid": "published_at",
           "unique": false
         },
         {
-          "dependencies": [
-            {
-              "description": "blog_post depends on global field seo",
-              "kind": "global_field",
-              "reason": "global_field",
-              "sourceEntityId": "content_type:blog_post",
-              "sourceFieldId": "content_type:blog_post.field:seo",
-              "targetEntityId": "global_field:seo",
-              "uid": "seo"
-            }
+          "dependencies": [],
+          "displayName": "Status",
+          "displayType": "dropdown",
+          "enumChoices": [
+            "draft",
+            "published",
+            "archived"
           ],
-          "displayName": "SEO",
-          "globalFieldRef": "seo",
-          "id": "content_type:blog_post.field:seo",
-          "kind": "global_field",
+          "id": "content_type:post.field:status",
+          "kind": "enum",
           "metadata": {},
           "multiple": false,
           "order": 8,
           "required": false,
-          "uid": "seo",
-          "unique": false
-        },
-        {
-          "dependencies": [
-            {
-              "description": "blog_post depends on global field test_glooobal",
-              "kind": "global_field",
-              "reason": "global_field",
-              "sourceEntityId": "content_type:blog_post",
-              "sourceFieldId": "content_type:blog_post.field:global_field",
-              "targetEntityId": "global_field:test_glooobal",
-              "uid": "test_glooobal"
-            }
-          ],
-          "displayName": "Global",
-          "globalFieldRef": "test_glooobal",
-          "id": "content_type:blog_post.field:global_field",
-          "kind": "global_field",
-          "metadata": {},
-          "multiple": false,
-          "order": 9,
-          "required": false,
-          "uid": "global_field",
+          "uid": "status",
           "unique": false
         }
       ],
-      "id": "content_type:blog_post",
+      "id": "content_type:post",
       "kind": "content_type",
       "metadata": {
         "origin": "dsl"
       },
-      "options": {
-        "is_page": true,
-        "singleton": false,
-        "sub_title": [],
-        "title": "title",
-        "url_pattern": "/:title",
-        "url_prefix": "/blog/"
-      },
-      "title": "Blog Entry",
-      "uid": "blog_post"
-    },
-    {
-      "dependencies": [],
-      "description": "It contains navigation, social media links and copyright text.",
-      "fields": [
-        {
-          "dependencies": [],
-          "displayName": "Title",
-          "id": "content_type:footer.field:title",
-          "kind": "text",
-          "metadata": {
-            "_default": true,
-            "version": 3
-          },
-          "multiple": false,
-          "order": 0,
-          "required": true,
-          "uid": "title",
-          "unique": true
-        },
-        {
-          "dependencies": [],
-          "displayName": "Logo",
-          "id": "content_type:footer.field:logo",
-          "kind": "file",
-          "metadata": {
-            "image": true
-          },
-          "multiple": false,
-          "order": 1,
-          "required": true,
-          "uid": "logo",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Navigation",
-          "fields": [
-            {
-              "dependencies": [],
-              "displayName": "Link",
-              "id": "content_type:footer.field:navigation.link",
-              "kind": "link",
-              "metadata": {
-                "default_value": {
-                  "title": "",
-                  "url": ""
-                }
-              },
-              "multiple": true,
-              "order": 0,
-              "required": false,
-              "uid": "link",
-              "unique": false
-            }
-          ],
-          "id": "content_type:footer.field:navigation",
-          "kind": "group",
-          "metadata": {},
-          "multiple": false,
-          "order": 2,
-          "required": false,
-          "uid": "navigation",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Social",
-          "fields": [
-            {
-              "dependencies": [],
-              "displayName": "Social Share",
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Link",
-                  "id": "content_type:footer.field:social.social_share.link",
-                  "kind": "link",
-                  "metadata": {
-                    "default_value": "",
-                    "isTitle": true
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "link",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Icon",
-                  "id": "content_type:footer.field:social.social_share.icon",
-                  "kind": "file",
-                  "metadata": {
-                    "image": true
-                  },
-                  "multiple": false,
-                  "order": 1,
-                  "required": true,
-                  "uid": "icon",
-                  "unique": false
-                }
-              ],
-              "id": "content_type:footer.field:social.social_share",
-              "kind": "group",
-              "metadata": {},
-              "multiple": true,
-              "order": 0,
-              "required": false,
-              "uid": "social_share",
-              "unique": false
-            }
-          ],
-          "id": "content_type:footer.field:social",
-          "kind": "group",
-          "metadata": {},
-          "multiple": false,
-          "order": 3,
-          "required": false,
-          "uid": "social",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Copyright",
-          "id": "content_type:footer.field:copyright",
-          "kind": "json_rte",
-          "metadata": {
-            "default_value": "",
-            "embed_entry": false,
-            "options": []
-          },
-          "multiple": false,
-          "order": 4,
-          "referenceTo": [
-            "sys_assets"
-          ],
-          "required": false,
-          "richTextType": "advanced",
-          "uid": "copyright",
-          "unique": false
-        }
-      ],
-      "id": "content_type:footer",
-      "kind": "content_type",
-      "metadata": {
-        "origin": "dsl"
-      },
-      "options": {
-        "is_page": false,
-        "singleton": true,
-        "sub_title": [],
-        "title": "title"
-      },
-      "title": "Footer",
-      "uid": "footer"
-    },
-    {
-      "dependencies": [
-        {
-          "description": "header references page",
-          "kind": "content_type",
-          "reason": "reference",
-          "sourceEntityId": "content_type:header",
-          "sourceFieldId": "content_type:header.field:navigation_menu.page_reference",
-          "targetEntityId": "content_type:page",
-          "uid": "page"
-        }
-      ],
-      "description": "It contains the company logo, main navigation and notification bar.",
-      "fields": [
-        {
-          "dependencies": [],
-          "displayName": "Title",
-          "id": "content_type:header.field:title",
-          "kind": "text",
-          "metadata": {
-            "_default": true,
-            "version": 3
-          },
-          "multiple": false,
-          "order": 0,
-          "required": true,
-          "uid": "title",
-          "unique": true
-        },
-        {
-          "dependencies": [],
-          "displayName": "Logo",
-          "id": "content_type:header.field:logo",
-          "kind": "file",
-          "metadata": {
-            "image": true
-          },
-          "multiple": false,
-          "order": 1,
-          "required": true,
-          "uid": "logo",
-          "unique": false
-        },
-        {
-          "dependencies": [
-            {
-              "description": "header references page",
-              "kind": "content_type",
-              "reason": "reference",
-              "sourceEntityId": "content_type:header",
-              "sourceFieldId": "content_type:header.field:navigation_menu.page_reference",
-              "targetEntityId": "content_type:page",
-              "uid": "page"
-            }
-          ],
-          "displayName": "Navigation Menu",
-          "fields": [
-            {
-              "dependencies": [],
-              "description": "Overwrites the reference title if used",
-              "displayName": "Label",
-              "id": "content_type:header.field:navigation_menu.label",
-              "kind": "text",
-              "metadata": {
-                "default_value": "",
-                "isTitle": true,
-                "version": 3
-              },
-              "multiple": false,
-              "order": 0,
-              "required": false,
-              "uid": "label",
-              "unique": false
-            },
-            {
-              "dependencies": [
-                {
-                  "description": "header references page",
-                  "kind": "content_type",
-                  "reason": "reference",
-                  "sourceEntityId": "content_type:header",
-                  "sourceFieldId": "content_type:header.field:navigation_menu.page_reference",
-                  "targetEntityId": "content_type:page",
-                  "uid": "page"
-                }
-              ],
-              "displayName": "Page Reference",
-              "id": "content_type:header.field:navigation_menu.page_reference",
-              "kind": "reference",
-              "metadata": {
-                "ref_multiple": false
-              },
-              "multiple": false,
-              "order": 1,
-              "refMultipleContentTypes": true,
-              "referenceTo": [
-                "page"
-              ],
-              "required": true,
-              "uid": "page_reference",
-              "unique": false
-            }
-          ],
-          "id": "content_type:header.field:navigation_menu",
-          "kind": "group",
-          "metadata": {},
-          "multiple": true,
-          "order": 2,
-          "required": false,
-          "uid": "navigation_menu",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Notification Bar",
-          "fields": [
-            {
-              "dependencies": [],
-              "displayName": "Announcement Text",
-              "id": "content_type:header.field:notification_bar.announcement_text",
-              "kind": "json_rte",
-              "metadata": {
-                "default_value": "",
-                "embed_entry": false,
-                "options": []
-              },
-              "multiple": false,
-              "order": 0,
-              "referenceTo": [
-                "sys_assets"
-              ],
-              "required": false,
-              "richTextType": "advanced",
-              "uid": "announcement_text",
-              "unique": false
-            },
-            {
-              "dependencies": [],
-              "displayName": "Show Announcement?",
-              "id": "content_type:header.field:notification_bar.show_announcement",
-              "kind": "boolean",
-              "metadata": {
-                "default_value": false
-              },
-              "multiple": false,
-              "order": 1,
-              "required": false,
-              "uid": "show_announcement",
-              "unique": false
-            }
-          ],
-          "id": "content_type:header.field:notification_bar",
-          "kind": "group",
-          "metadata": {},
-          "multiple": false,
-          "order": 3,
-          "required": false,
-          "uid": "notification_bar",
-          "unique": false
-        }
-      ],
-      "id": "content_type:header",
-      "kind": "content_type",
-      "metadata": {
-        "origin": "dsl"
-      },
-      "options": {
-        "is_page": false,
-        "singleton": true,
-        "sub_title": [],
-        "title": "title"
-      },
-      "title": "Header",
-      "uid": "header"
-    },
-    {
-      "dependencies": [
-        {
-          "description": "page references blog_post",
-          "kind": "content_type",
-          "reason": "reference",
-          "sourceEntityId": "content_type:page",
-          "sourceFieldId": "content_type:page.field:block:from_blog.featured_blogs",
-          "targetEntityId": "content_type:blog_post",
-          "uid": "blog_post"
-        },
-        {
-          "description": "page depends on global field seo",
-          "kind": "global_field",
-          "reason": "global_field",
-          "sourceEntityId": "content_type:page",
-          "sourceFieldId": "content_type:page.field:seo",
-          "targetEntityId": "global_field:seo",
-          "uid": "seo"
-        }
-      ],
-      "description": "Re-usable content template that can be extended to fit many use cases. Example: Landing page, Contact page, About page, etc.",
-      "fields": [
-        {
-          "dependencies": [],
-          "displayName": "Title",
-          "id": "content_type:page.field:title",
-          "kind": "text",
-          "metadata": {
-            "_default": true,
-            "version": 3
-          },
-          "multiple": false,
-          "order": 0,
-          "required": true,
-          "uid": "title",
-          "unique": true
-        },
-        {
-          "dependencies": [],
-          "displayName": "URL",
-          "id": "content_type:page.field:url",
-          "kind": "text",
-          "metadata": {
-            "_default": true,
-            "version": 3
-          },
-          "multiple": false,
-          "order": 1,
-          "required": false,
-          "uid": "url",
-          "unique": false
-        },
-        {
-          "blocks": [
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Banner Image",
-                  "id": "content_type:page.field:block:hero_banner.banner_image",
-                  "kind": "file",
-                  "metadata": {
-                    "image": true
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "banner_image",
-                  "unique": false
-                },
-                {
-                  "config": {},
-                  "dependencies": [],
-                  "displayName": "Bg color",
-                  "extensionUid": "bltf786e59112341d08",
-                  "id": "content_type:page.field:block:hero_banner.bg_color",
-                  "kind": "text",
-                  "metadata": {
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 1,
-                  "required": false,
-                  "uid": "bg_color",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Banner Title",
-                  "id": "content_type:page.field:block:hero_banner.banner_title",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 2,
-                  "required": false,
-                  "uid": "banner_title",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Banner Description",
-                  "id": "content_type:page.field:block:hero_banner.banner_description",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiline": true,
-                  "multiple": false,
-                  "order": 3,
-                  "required": false,
-                  "uid": "banner_description",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Call to Action",
-                  "id": "content_type:page.field:block:hero_banner.call_to_action",
-                  "kind": "link",
-                  "metadata": {
-                    "default_value": {
-                      "title": "",
-                      "url": ""
-                    }
-                  },
-                  "multiple": false,
-                  "order": 4,
-                  "required": false,
-                  "uid": "call_to_action",
-                  "unique": false
-                }
-              ],
-              "title": "Hero Banner",
-              "uid": "hero_banner"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Address",
-                  "id": "content_type:page.field:block:contact_details.address",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiline": true,
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "address",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Phone",
-                  "id": "content_type:page.field:block:contact_details.phone",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 1,
-                  "required": false,
-                  "uid": "phone",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Email",
-                  "id": "content_type:page.field:block:contact_details.email",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 2,
-                  "required": false,
-                  "uid": "email",
-                  "unique": false
-                }
-              ],
-              "title": "Contact Details",
-              "uid": "contact_details"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Title H2",
-                  "id": "content_type:page.field:block:section_with_buckets.title_h2",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "title_h2",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Description",
-                  "id": "content_type:page.field:block:section_with_buckets.description",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiline": true,
-                  "multiple": false,
-                  "order": 1,
-                  "required": false,
-                  "uid": "description",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Buckets",
-                  "fields": [
-                    {
-                      "dependencies": [],
-                      "displayName": "Title H3",
-                      "id": "content_type:page.field:block:section_with_buckets.buckets.title_h3",
-                      "kind": "text",
-                      "metadata": {
-                        "default_value": "",
-                        "isTitle": true,
-                        "version": 3
-                      },
-                      "multiple": false,
-                      "order": 0,
-                      "required": false,
-                      "uid": "title_h3",
-                      "unique": false
-                    },
-                    {
-                      "dependencies": [],
-                      "displayName": "Description",
-                      "id": "content_type:page.field:block:section_with_buckets.buckets.description",
-                      "kind": "json_rte",
-                      "metadata": {
-                        "default_value": "",
-                        "embed_entry": false,
-                        "options": []
-                      },
-                      "multiple": false,
-                      "order": 1,
-                      "referenceTo": [
-                        "sys_assets"
-                      ],
-                      "required": false,
-                      "richTextType": "advanced",
-                      "uid": "description",
-                      "unique": false
-                    },
-                    {
-                      "dependencies": [],
-                      "displayName": "Icon",
-                      "id": "content_type:page.field:block:section_with_buckets.buckets.icon",
-                      "kind": "file",
-                      "metadata": {
-                        "image": true
-                      },
-                      "multiple": false,
-                      "order": 2,
-                      "required": true,
-                      "uid": "icon",
-                      "unique": false
-                    },
-                    {
-                      "dependencies": [],
-                      "displayName": "Call to Action",
-                      "id": "content_type:page.field:block:section_with_buckets.buckets.call_to_action",
-                      "kind": "link",
-                      "metadata": {
-                        "default_value": {
-                          "title": "",
-                          "url": ""
-                        }
-                      },
-                      "multiple": false,
-                      "order": 3,
-                      "required": false,
-                      "uid": "call_to_action",
-                      "unique": false
-                    }
-                  ],
-                  "id": "content_type:page.field:block:section_with_buckets.buckets",
-                  "kind": "group",
-                  "metadata": {},
-                  "multiple": true,
-                  "order": 2,
-                  "required": false,
-                  "uid": "buckets",
-                  "unique": false
-                }
-              ],
-              "title": "Section with Buckets",
-              "uid": "section_with_buckets"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Title H2",
-                  "id": "content_type:page.field:block:section.title_h2",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "title_h2",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Description",
-                  "id": "content_type:page.field:block:section.description",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiline": true,
-                  "multiple": false,
-                  "order": 1,
-                  "required": false,
-                  "uid": "description",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Call to Action",
-                  "id": "content_type:page.field:block:section.call_to_action",
-                  "kind": "link",
-                  "metadata": {
-                    "default_value": {
-                      "title": "",
-                      "url": ""
-                    }
-                  },
-                  "multiple": false,
-                  "order": 2,
-                  "required": false,
-                  "uid": "call_to_action",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Image",
-                  "id": "content_type:page.field:block:section.image",
-                  "kind": "file",
-                  "metadata": {
-                    "image": true
-                  },
-                  "multiple": false,
-                  "order": 3,
-                  "required": true,
-                  "uid": "image",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Image Alignment",
-                  "displayType": "radio",
-                  "enumChoices": [
-                    "Left",
-                    "Right"
-                  ],
-                  "id": "content_type:page.field:block:section.image_alignment",
-                  "kind": "enum",
-                  "metadata": {
-                    "default_value": "Left",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 4,
-                  "required": false,
-                  "uid": "image_alignment",
-                  "unique": false
-                }
-              ],
-              "title": "Section",
-              "uid": "section"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Cards",
-                  "fields": [
-                    {
-                      "dependencies": [],
-                      "displayName": "Title H3",
-                      "id": "content_type:page.field:block:section_with_cards.cards.title_h3",
-                      "kind": "text",
-                      "metadata": {
-                        "default_value": "",
-                        "isTitle": true,
-                        "version": 3
-                      },
-                      "multiple": false,
-                      "order": 0,
-                      "required": false,
-                      "uid": "title_h3",
-                      "unique": false
-                    },
-                    {
-                      "dependencies": [],
-                      "displayName": "Description",
-                      "id": "content_type:page.field:block:section_with_cards.cards.description",
-                      "kind": "text",
-                      "metadata": {
-                        "default_value": "",
-                        "version": 3
-                      },
-                      "multiline": true,
-                      "multiple": false,
-                      "order": 1,
-                      "required": false,
-                      "uid": "description",
-                      "unique": false
-                    },
-                    {
-                      "dependencies": [],
-                      "displayName": "Call to Action",
-                      "id": "content_type:page.field:block:section_with_cards.cards.call_to_action",
-                      "kind": "link",
-                      "metadata": {
-                        "default_value": {
-                          "title": "",
-                          "url": ""
-                        }
-                      },
-                      "multiple": false,
-                      "order": 2,
-                      "required": false,
-                      "uid": "call_to_action",
-                      "unique": false
-                    }
-                  ],
-                  "id": "content_type:page.field:block:section_with_cards.cards",
-                  "kind": "group",
-                  "metadata": {},
-                  "multiple": true,
-                  "order": 0,
-                  "required": false,
-                  "uid": "cards",
-                  "unique": false
-                }
-              ],
-              "title": "Section with Cards",
-              "uid": "section_with_cards"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Title",
-                  "id": "content_type:page.field:block:section_with_html_code.title",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "title",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Description",
-                  "id": "content_type:page.field:block:section_with_html_code.description",
-                  "kind": "json_rte",
-                  "metadata": {
-                    "default_value": "",
-                    "embed_entry": false,
-                    "options": []
-                  },
-                  "multiple": false,
-                  "order": 1,
-                  "referenceTo": [
-                    "sys_assets"
-                  ],
-                  "required": false,
-                  "richTextType": "advanced",
-                  "uid": "description",
-                  "unique": false
-                },
-                {
-                  "config": {},
-                  "dependencies": [],
-                  "displayName": "HTML Code",
-                  "extensionUid": "blt1513a7c8ac603455",
-                  "id": "content_type:page.field:block:section_with_html_code.html_code",
-                  "kind": "text",
-                  "metadata": {
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 2,
-                  "required": false,
-                  "uid": "html_code",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "HTML Code Alignment",
-                  "displayType": "radio",
-                  "enumChoices": [
-                    "Left",
-                    "Right"
-                  ],
-                  "id": "content_type:page.field:block:section_with_html_code.html_code_alignment",
-                  "kind": "enum",
-                  "metadata": {
-                    "default_value": "Left",
-                    "instruction": "Choose which side your HTML code should be rendered.",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 3,
-                  "required": false,
-                  "uid": "html_code_alignment",
-                  "unique": false
-                }
-              ],
-              "title": "Section with HTML Code",
-              "uid": "section_with_html_code"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Title H2",
-                  "id": "content_type:page.field:block:from_blog.title_h2",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "title_h2",
-                  "unique": false
-                },
-                {
-                  "dependencies": [
-                    {
-                      "description": "page references blog_post",
-                      "kind": "content_type",
-                      "reason": "reference",
-                      "sourceEntityId": "content_type:page",
-                      "sourceFieldId": "content_type:page.field:block:from_blog.featured_blogs",
-                      "targetEntityId": "content_type:blog_post",
-                      "uid": "blog_post"
-                    }
-                  ],
-                  "displayName": "Featured Blogs",
-                  "id": "content_type:page.field:block:from_blog.featured_blogs",
-                  "kind": "reference",
-                  "metadata": {
-                    "ref_multiple": true
-                  },
-                  "multiple": false,
-                  "order": 1,
-                  "refMultipleContentTypes": true,
-                  "referenceTo": [
-                    "blog_post"
-                  ],
-                  "required": false,
-                  "uid": "featured_blogs",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "View Articles",
-                  "id": "content_type:page.field:block:from_blog.view_articles",
-                  "kind": "link",
-                  "metadata": {
-                    "default_value": {
-                      "title": "",
-                      "url": ""
-                    }
-                  },
-                  "multiple": false,
-                  "order": 2,
-                  "required": false,
-                  "uid": "view_articles",
-                  "unique": false
-                }
-              ],
-              "title": "From Blog",
-              "uid": "from_blog"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Title H2",
-                  "id": "content_type:page.field:block:our_team.title_h2",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "title_h2",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Description",
-                  "id": "content_type:page.field:block:our_team.description",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiline": true,
-                  "multiple": false,
-                  "order": 1,
-                  "required": false,
-                  "uid": "description",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Employees",
-                  "fields": [
-                    {
-                      "dependencies": [],
-                      "displayName": "Name",
-                      "id": "content_type:page.field:block:our_team.employees.name",
-                      "kind": "text",
-                      "metadata": {
-                        "default_value": "",
-                        "isTitle": true,
-                        "version": 3
-                      },
-                      "multiple": false,
-                      "order": 0,
-                      "required": false,
-                      "uid": "name",
-                      "unique": false
-                    },
-                    {
-                      "dependencies": [],
-                      "displayName": "Designation",
-                      "id": "content_type:page.field:block:our_team.employees.designation",
-                      "kind": "text",
-                      "metadata": {
-                        "default_value": "",
-                        "version": 3
-                      },
-                      "multiple": false,
-                      "order": 1,
-                      "required": false,
-                      "uid": "designation",
-                      "unique": false
-                    },
-                    {
-                      "dependencies": [],
-                      "displayName": "Image",
-                      "id": "content_type:page.field:block:our_team.employees.image",
-                      "kind": "file",
-                      "metadata": {
-                        "image": true
-                      },
-                      "multiple": false,
-                      "order": 2,
-                      "required": true,
-                      "uid": "image",
-                      "unique": false
-                    }
-                  ],
-                  "id": "content_type:page.field:block:our_team.employees",
-                  "kind": "group",
-                  "metadata": {},
-                  "multiple": true,
-                  "order": 2,
-                  "required": false,
-                  "uid": "employees",
-                  "unique": false
-                }
-              ],
-              "title": "Our Team",
-              "uid": "our_team"
-            },
-            {
-              "fields": [
-                {
-                  "dependencies": [],
-                  "displayName": "Title H2",
-                  "id": "content_type:page.field:block:widget.title_h2",
-                  "kind": "text",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 0,
-                  "required": false,
-                  "uid": "title_h2",
-                  "unique": false
-                },
-                {
-                  "dependencies": [],
-                  "displayName": "Type",
-                  "displayType": "dropdown",
-                  "enumChoices": [
-                    "Blog Archive",
-                    "Related Posts"
-                  ],
-                  "id": "content_type:page.field:block:widget.type",
-                  "kind": "enum",
-                  "metadata": {
-                    "default_value": "",
-                    "version": 3
-                  },
-                  "multiple": false,
-                  "order": 1,
-                  "required": false,
-                  "uid": "type",
-                  "unique": false
-                }
-              ],
-              "title": "Widget",
-              "uid": "widget"
-            }
-          ],
-          "dependencies": [
-            {
-              "description": "page references blog_post",
-              "kind": "content_type",
-              "reason": "reference",
-              "sourceEntityId": "content_type:page",
-              "sourceFieldId": "content_type:page.field:block:from_blog.featured_blogs",
-              "targetEntityId": "content_type:blog_post",
-              "uid": "blog_post"
-            }
-          ],
-          "displayName": "Page Components",
-          "id": "content_type:page.field:page_components",
-          "kind": "modular_blocks",
-          "metadata": {},
-          "multiple": true,
-          "order": 2,
-          "required": false,
-          "uid": "page_components",
-          "unique": false
-        },
-        {
-          "dependencies": [
-            {
-              "description": "page depends on global field seo",
-              "kind": "global_field",
-              "reason": "global_field",
-              "sourceEntityId": "content_type:page",
-              "sourceFieldId": "content_type:page.field:seo",
-              "targetEntityId": "global_field:seo",
-              "uid": "seo"
-            }
-          ],
-          "displayName": "SEO",
-          "globalFieldRef": "seo",
-          "id": "content_type:page.field:seo",
-          "kind": "global_field",
-          "metadata": {},
-          "multiple": false,
-          "order": 3,
-          "required": false,
-          "uid": "seo",
-          "unique": false
-        }
-      ],
-      "id": "content_type:page",
-      "kind": "content_type",
-      "metadata": {
-        "origin": "dsl"
-      },
-      "options": {
-        "is_page": true,
-        "singleton": false,
-        "sub_title": [],
-        "title": "title",
-        "url_pattern": "/:title",
-        "url_prefix": "/"
-      },
-      "title": "Page",
-      "uid": "page"
-    },
-    {
-      "dependencies": [
-        {
-          "description": "test depends on global field testg",
-          "kind": "global_field",
-          "reason": "global_field",
-          "sourceEntityId": "content_type:test",
-          "sourceFieldId": "content_type:test.field:global_field",
-          "targetEntityId": "global_field:testg",
-          "uid": "testg"
-        }
-      ],
-      "fields": [
-        {
-          "dependencies": [],
-          "displayName": "Title",
-          "id": "content_type:test.field:title",
-          "kind": "text",
-          "metadata": {
-            "_default": true,
-            "version": 3
-          },
-          "multiple": false,
-          "order": 0,
-          "required": true,
-          "uid": "title",
-          "unique": true
-        },
-        {
-          "dependencies": [],
-          "displayName": "Date",
-          "endDate": null,
-          "id": "content_type:test.field:date",
-          "kind": "date",
-          "metadata": {
-            "default_value": {}
-          },
-          "multiple": false,
-          "order": 1,
-          "required": false,
-          "startDate": null,
-          "uid": "date",
-          "unique": false
-        },
-        {
-          "config": {},
-          "dependencies": [],
-          "displayName": "Custom",
-          "extensionUid": "bltf786e59112341d08",
-          "id": "content_type:test.field:custom",
-          "kind": "text",
-          "metadata": {},
-          "multiple": false,
-          "order": 2,
-          "required": false,
-          "uid": "custom",
-          "unique": false
-        },
-        {
-          "config": {},
-          "dependencies": [],
-          "displayName": "Custom2",
-          "extensionUid": "blta661d7cf7fcd396f",
-          "id": "content_type:test.field:custom2",
-          "kind": "number",
-          "metadata": {},
-          "multiple": false,
-          "order": 3,
-          "required": false,
-          "uid": "custom2",
-          "unique": false
-        },
-        {
-          "dependencies": [
-            {
-              "description": "test depends on global field testg",
-              "kind": "global_field",
-              "reason": "global_field",
-              "sourceEntityId": "content_type:test",
-              "sourceFieldId": "content_type:test.field:global_field",
-              "targetEntityId": "global_field:testg",
-              "uid": "testg"
-            }
-          ],
-          "displayName": "Global",
-          "globalFieldRef": "testg",
-          "id": "content_type:test.field:global_field",
-          "kind": "global_field",
-          "metadata": {},
-          "multiple": false,
-          "order": 4,
-          "required": false,
-          "uid": "global_field",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "JSON Rich Text Editor",
-          "id": "content_type:test.field:json_rte",
-          "kind": "json_rte",
-          "metadata": {
-            "default_value": "",
-            "embed_entry": true,
-            "isTitle": false,
-            "options": []
-          },
-          "multiple": true,
-          "order": 5,
-          "referenceTo": [
-            "author",
-            "sys_assets"
-          ],
-          "required": true,
-          "richTextType": "advanced",
-          "uid": "json_rte",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Rich Text Editor",
-          "id": "content_type:test.field:rich_text_editor",
-          "kind": "rich_text",
-          "metadata": {
-            "isTitle": false,
-            "options": [],
-            "version": 3
-          },
-          "multiple": true,
-          "order": 6,
-          "required": true,
-          "richTextType": "advanced",
-          "uid": "rich_text_editor",
-          "unique": false
-        }
-      ],
-      "id": "content_type:test",
-      "kind": "content_type",
-      "metadata": {
-        "origin": "dsl"
-      },
-      "options": {
-        "is_page": false,
-        "singleton": false,
-        "sub_title": [],
-        "title": "title"
-      },
-      "title": "test",
-      "uid": "test"
-    },
-    {
-      "dependencies": [],
-      "description": "It contains SEO related information.",
-      "fields": [
-        {
-          "dependencies": [],
-          "displayName": "Meta Title",
-          "id": "global_field:seo.field:meta_title",
-          "kind": "text",
-          "metadata": {
-            "default_value": "",
-            "version": 3
-          },
-          "multiple": false,
-          "order": 0,
-          "required": false,
-          "uid": "meta_title",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Meta Description",
-          "id": "global_field:seo.field:meta_description",
-          "kind": "text",
-          "metadata": {
-            "default_value": "",
-            "version": 3
-          },
-          "multiline": true,
-          "multiple": false,
-          "order": 1,
-          "required": false,
-          "uid": "meta_description",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Meta Keywords",
-          "id": "global_field:seo.field:keywords",
-          "kind": "text",
-          "metadata": {
-            "default_value": "",
-            "version": 3
-          },
-          "multiple": false,
-          "order": 2,
-          "required": false,
-          "uid": "keywords",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Enable Search Indexing",
-          "id": "global_field:seo.field:enable_search_indexing",
-          "kind": "boolean",
-          "metadata": {
-            "default_value": true
-          },
-          "multiple": false,
-          "order": 3,
-          "required": false,
-          "uid": "enable_search_indexing",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Date",
-          "endDate": null,
-          "id": "global_field:seo.field:date",
-          "kind": "date",
-          "metadata": {
-            "default_value": {}
-          },
-          "multiple": false,
-          "order": 4,
-          "required": false,
-          "startDate": null,
-          "uid": "date",
-          "unique": false
-        }
-      ],
-      "id": "global_field:seo",
-      "kind": "global_field",
-      "metadata": {
-        "origin": "dsl"
-      },
-      "title": "SEO",
-      "uid": "seo"
-    },
-    {
-      "dependencies": [
-        {
-          "description": "test_glooobal references footer",
-          "kind": "content_type",
-          "reason": "reference",
-          "sourceEntityId": "global_field:test_glooobal",
-          "sourceFieldId": "global_field:test_glooobal.field:reference",
-          "targetEntityId": "content_type:footer",
-          "uid": "footer"
-        }
-      ],
-      "fields": [
-        {
-          "dependencies": [],
-          "displayName": "Single Line Textbox",
-          "id": "global_field:test_glooobal.field:single_line",
-          "kind": "text",
-          "metadata": {
-            "default_value": ""
-          },
-          "multiple": false,
-          "order": 0,
-          "required": false,
-          "uid": "single_line",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "Date",
-          "endDate": null,
-          "id": "global_field:test_glooobal.field:date",
-          "kind": "date",
-          "metadata": {
-            "default_value": {}
-          },
-          "multiple": false,
-          "order": 1,
-          "required": false,
-          "startDate": null,
-          "uid": "date",
-          "unique": false
-        },
-        {
-          "dependencies": [
-            {
-              "description": "test_glooobal references footer",
-              "kind": "content_type",
-              "reason": "reference",
-              "sourceEntityId": "global_field:test_glooobal",
-              "sourceFieldId": "global_field:test_glooobal.field:reference",
-              "targetEntityId": "content_type:footer",
-              "uid": "footer"
-            }
-          ],
-          "displayName": "Reference",
-          "id": "global_field:test_glooobal.field:reference",
-          "kind": "reference",
-          "metadata": {
-            "ref_multiple": false
-          },
-          "multiple": false,
-          "order": 2,
-          "refMultipleContentTypes": true,
-          "referenceTo": [
-            "footer"
-          ],
-          "required": false,
-          "uid": "reference",
-          "unique": false
-        }
-      ],
-      "id": "global_field:test_glooobal",
-      "kind": "global_field",
-      "metadata": {
-        "origin": "dsl"
-      },
-      "title": "test-glooobal",
-      "uid": "test_glooobal"
-    },
-    {
-      "dependencies": [],
-      "fields": [
-        {
-          "dependencies": [],
-          "displayName": "Single Line Textbox",
-          "id": "global_field:testg.field:single_line",
-          "kind": "text",
-          "metadata": {
-            "default_value": "",
-            "version": 3
-          },
-          "multiple": false,
-          "order": 0,
-          "required": false,
-          "uid": "single_line",
-          "unique": false
-        },
-        {
-          "dependencies": [],
-          "displayName": "File",
-          "id": "global_field:testg.field:file",
-          "kind": "file",
-          "metadata": {},
-          "multiple": false,
-          "order": 1,
-          "required": false,
-          "uid": "file",
-          "unique": false
-        }
-      ],
-      "id": "global_field:testg",
-      "kind": "global_field",
-      "metadata": {
-        "origin": "dsl"
-      },
-      "title": "testg",
-      "uid": "testg"
+      "title": "Post",
+      "uid": "post"
     }
   ],
   "metadata": {

@@ -8,8 +8,8 @@
     "cli": "unknown",
     "models": "unknown"
   },
-  "projectName": "stacksmith-projects",
-  "schemaHash": "1d608b2416bc4fc095f581df902ab47a17099ef6d3ab16492fc30fec411522b8",
+  "projectName": "simple-blog",
+  "schemaHash": "7fd8c8d88e1dc7ac7d3b23a13fe18cc51d2347dce6d6e5dd9bce2a0de43a7d1a",
   "sourceFiles": [
     "/Users/shafeeq.pp/WORKSPACE/stacksmith-projects/contentstack.stacksmith.config.ts",
     "/Users/shafeeq.pp/WORKSPACE/stacksmith-projects/src/models/index.ts"
